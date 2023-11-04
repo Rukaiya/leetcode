@@ -2,36 +2,25 @@
 
 def can_place_flowers(flowerbed, n)
   index = 0
-  while index < flowerbed.length
-    # print(val, index)
-    if flowerbed[index].positive?
+  while index < flowerbed.length && n.positive?
+    if flowerbed[index].zero?
+      if (index.zero? || flowerbed[index - 1]&.zero?) && (index == flowerbed.length - 1 || flowerbed[index + 1]&.zero?)
+        n -= 1
+        flowerbed[index] = 1
+        index += 2
+      else
+        index += 1
+      end
+    else
       index += 1
-      next
     end
-
-    # initial index with 0 val
-    if index.zero? && flowerbed[index + 1]&.zero?
-      n -= 1
-      index += 1
-      next
-    end
-
-    # last 2 point
-    if index == flowerbed.length - 2
-      # if both are zeros
-      n -= 1 if flowerbed[index].zero? && flowerbed[index + 1]&.zero?
-      # break if not
-      break
-    end
-
-    if flowerbed[index..(index + 2)].all?(&:zero?)
-      n -= 1
-      index += 3
-    end
-    break if n.zero?
   end
   n.zero?
 end
 
-output = can_place_flowers([1,0,0,0, 0,1], 2)
+output = can_place_flowers([1, 0, 0, 0, 1, 0, 0], 2)
+puts output
+output = can_place_flowers([0, 1, 0, 1, 0, 1, 0, 0], 1)
+puts output
+output = can_place_flowers([1, 0, 0, 0, 0, 1], 1)
 puts output
