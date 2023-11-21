@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://leetcode.com/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=leetcode-75
 
 def product_except_self(nums)
@@ -8,5 +10,6 @@ def product_except_self(nums)
   other_arr
 end
 
-output = product_except_self([-1,1,0,-3,3])
+output = product_except_self([-1, 1, 0, -3, 3])
 puts output.inspect
+
